@@ -1,0 +1,117 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+pagination:
+  enabled: true
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{'style.css' | relative_url}}">
+    <title>Hello, world!</title>
+  </head>
+  <body style = "background-image: url({{ '/Images/1920/bg-man.png' | relative_url }}), url({{'/Images/1920/bg-grey.png' | relative_url}} );">
+    <img src="{{site.baseurl}}/Images/1920/logo_SCA.png" class="rounded mx-auto d-block logo" alt="...">
+    <div class="mainbody container">
+
+<!-- This loops through the paginated posts -->
+{% for post in paginator.posts %}
+  
+<div class="row justify-content-center postdiv  ">
+
+      <div class="col-9 border-bottom pb-5">
+        <img src=" {{ post.image | relative_url }} " class="rounded mx-auto d-block" alt="...">
+        <p class="text-center pt-1 mb-5">{{ post.title }}</p>
+
+      </div>
+ 
+</div>
+
+  
+
+{% endfor %}
+
+
+<!-- Pagination links -->
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+<div class="wrapper">
+  <ul class="kai-pagination">
+      
+  {% if paginator.previous_page %}
+    <li class="pagination-item is-prev"> <a href="{{ paginator.previous_page_path | relative_url }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></a>
+      </li>
+  {% else %}
+    <li class="pagination-item is-prev"> 
+        <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></a>
+      </li>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <li class="pagination-item is-active"><a href="">{{ page }} </a> </li>
+    {% elsif page == 1 %}
+      <li class="pagination-item"><a href="{{ '/' | relative_url }}">{{ page }}</a> </li>
+    {% else %}
+      <li class="pagination-item"><a href="{{ site.paginate_path | relative_url | replace: ':num', page }}"> {{ page }} </a> </li>
+    {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <li class="pagination-item is-next">
+      <a href="{{ paginator.next_page_path | relative_url }}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a> </li>
+  {% else %}
+    <li class="pagination-item is-next">
+      <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a></li>
+  {% endif %}
+</ul>
+</div>
+</div>
+{% endif %}
+
+
+
+
+
+
+  
+
+
+  <!-- Content here -->
+    </div>
+
+    <div class="footer container">
+        <img src="{{site.baseurl}}/Images/so.png" class="rounded mx-auto d-block footerlogo" alt="...">
+        <p class="text-center mt-3">ghoda@socalledartist.com</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
